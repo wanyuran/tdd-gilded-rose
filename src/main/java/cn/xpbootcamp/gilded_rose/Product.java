@@ -3,12 +3,12 @@ package cn.xpbootcamp.gilded_rose;
 public class Product {
     private int sellIn;
     private int initialQuality;
-    private int decreaseStep;
+    private int depreciationPerDay;
 
-    public  Product(int sellIn, int initialQuality, int decreaseStep){
+    public  Product(int sellIn, int initialQuality, int depreciationPerDay){
         this.sellIn = sellIn;
         this.initialQuality = initialQuality;
-        this.decreaseStep = decreaseStep;
+        this.depreciationPerDay = depreciationPerDay;
     }
 
     public int getSellIn() {
@@ -27,16 +27,16 @@ public class Product {
         this.initialQuality = initialQuality;
     }
 
-    public int getDecreaseStep() {
-        return decreaseStep;
+    public int getDepreciationPerDay() {
+        return depreciationPerDay;
     }
 
-    public void setDecreaseStep(int decreaseStep) {
-        this.decreaseStep = decreaseStep;
+    public void setDepreciationPerDay(int depreciationPerDay) {
+        this.depreciationPerDay = depreciationPerDay;
     }
 
     public int getCurrentQuality(int passedDays) {
-        int currentQuality = initialQuality - passedDays * decreaseStep;
+        int currentQuality = initialQuality - passedDays * depreciationPerDay;
         return Math.max(currentQuality,0);
     }
 }
