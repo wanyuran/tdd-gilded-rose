@@ -20,6 +20,13 @@ public class Product {
         this.type = type;
     }
 
+    public Product(int sellIn, int initialQuality, String type) {
+        this.sellIn = sellIn;
+        this.initialQuality = initialQuality;
+        this.type = type;
+
+    }
+
 
     public int getSellIn() {
         return sellIn;
@@ -41,24 +48,32 @@ public class Product {
         return depreciationPerDay;
     }
 
-    public void setDepreciationPerDay(int depreciationPerDay) {
+    public void setDepreciationPerDay(int depreciationPerDay, int passedDays) {
+        int remainingDays = sellIn - passedDays;
+
+        if (("Aged Brie".equals(type) || "Backstage pass".equals(type)) && remainingDays <= 10 && remainingDays > 5 ) {
+            this.depreciationPerDay = 2;
+        } else if(("Aged Brie".equals(type) || "Backstage pass".equals(type)) && remainingDays <= 5 && remainingDays >= 0) {
+            this.depreciationPerDay = 3;
+        }
+
         this.depreciationPerDay = depreciationPerDay;
     }
 
     public int getCurrentQuality(int passedDays) {
-        int remainingDays = sellIn - passedDays;
+        int leftDays = sellIn - passedDays;
 
-        if ("Aged_Brie".equals(type) || "Backstage pass".equals(type)) {
-            if (remainingDays > 10) {
+        if ("Aged Brie".equals(type) || "Backstage pass".equals(type)) {
+            if (leftDays > 10) {
                 int currentQuality = initialQuality;
                 return currentQuality;
-            } else if (remainingDays > 5 && remainingDays <= 10) {
-                int currentQuality = Math.max(50, initialQuality + 2 * (remainingDays - 5));
+            } else if (leftDays > 5 && leftDays <= 10) {
+                int currentQuality = Math.max(50, initialQuality + depreciationPerDay * (10 - leftDays));
                 return currentQuality;
-            } else if (remainingDays >= 0 && remainingDays <= 5) {
-                int currentQuality = Math.max(50, initialQuality + 3 * remainingDays + 20);
+            } else if (leftDays >= 0 && leftDays <= 5) {
+                int currentQuality = Math.max(50, initialQuality + depreciationPerDay * (5 - leftDays) + 10);
                 return currentQuality;
-            } else if (remainingDays < 0) {
+            } else if (leftDays < 0) {
                 int currentQuality = 0;
                 return currentQuality;
             }
@@ -67,7 +82,7 @@ public class Product {
             return currentQuality;
         }
 
-        int currentQuality = Math.min(0, initialQuality - remainingDays * depreciationPerDay);
+        int currentQuality = Math.min(0, initialQuality - leftDays * depreciationPerDay);
         return currentQuality;
     }
 }

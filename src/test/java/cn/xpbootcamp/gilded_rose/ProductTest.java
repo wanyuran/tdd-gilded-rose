@@ -46,7 +46,7 @@ public class ProductTest {
     }
 
     @Test
-    void should_quality_no_change_for_Aged_Brie_given_more_than_10_remaining_days() {
+    void should_quality_no_change_for_Aged_Brie_given_more_than_10_left_days() {
         Product product = new Product(50,30,2, "Aged Brie");
 
         int initialQuality = product.getInitialQuality();
@@ -56,10 +56,16 @@ public class ProductTest {
     }
 
     @Test
-    void should_quality_increase_by_2_for_Aged_Brie_given_less_than_10_and_more_than_5_remaining_days() { }
+    void should_quality_increase_by_2_for_Aged_Brie_given_less_than_10_and_more_than_5_left_days() {
+        Product product = new Product(50, 30, 5, "Aged Brie" );
+
+        int quality = product.getCurrentQuality(41);
+
+        assertEquals(32 , quality);
+    }
 
     @Test
-    void should_quality_increase_by_3_for_Aged_Brie_given_less_than_5_and_more_than_0_remaining_days() { }
+    void should_quality_increase_by_3_for_Aged_Brie_given_less_than_5_and_more_than_0_left_days() { }
 
     @Test
     void should_quality_decrease_to_0_for_Aged_Brie_out_of_sellIn() {
@@ -72,20 +78,26 @@ public class ProductTest {
 
 
     @Test
-    void should_quality_no_change_for_BackStage_Pass_given_more_than_10_remaining_days() {
+    void should_quality_no_change_for_BackStage_Pass_given_more_than_10_left_days() {
         Product product = new Product(50,30,2,"BackStage Pass");
 
         int initialQuality = product.getInitialQuality();
-        int quality = product.getCurrentQuality(11);
+        int quality = product.getCurrentQuality(39);
 
         assertTrue(quality == initialQuality);
     }
 
     @Test
-    void should_quality_increase_by_2_for_BackStage_Pass_given_less_than_10_and_more_than_5_remaining_days() { }
+    void should_quality_increase_by_2_for_BackStage_Pass_given_less_than_10_and_more_than_5_left_days() {
+        Product product = new Product(50, 30, 5, "BackStage Pass");
+
+        int quality = product.getCurrentQuality(41);
+
+        assertEquals(32 , quality);
+    }
 
     @Test
-    void should_quality_increase_by_2_for_BackStage_Pass_given_less_than_5_and_more_than_0_remaining_days() { }
+    void should_quality_increase_by_2_for_BackStage_Pass_given_less_than_5_and_more_than_0_left_days() { }
 
     @Test
     void should_quality_decrease_to_0_for_BackStage_Pass_out_of_sellIn() {
