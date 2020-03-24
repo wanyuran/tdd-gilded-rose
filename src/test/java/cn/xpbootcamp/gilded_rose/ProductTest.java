@@ -32,4 +32,9 @@ public class ProductTest {
         assertTrue(qualityOfManyDays > qualityOfFewDays);
     }
 
+    @Test
+    void should_quality_no_change_for_Sulfuras_given_different_passed_days() {
+
+    }
+
 }

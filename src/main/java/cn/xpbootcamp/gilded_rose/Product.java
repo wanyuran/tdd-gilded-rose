@@ -44,7 +44,7 @@ public class Product {
         this.depreciationPerDay = depreciationPerDay;
     }
 
-    public int getCurrentQuality(int passedDays, String type) {
+    public int getCurrentQuality(int passedDays) {
         int remainingDays = sellIn - passedDays;
 
         if ("Aged_Brie".equals(type) || "Backstage pass".equals(type)) {
