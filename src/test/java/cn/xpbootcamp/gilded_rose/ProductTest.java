@@ -65,7 +65,13 @@ public class ProductTest {
     }
 
     @Test
-    void should_quality_increase_by_3_for_Aged_Brie_given_less_than_5_and_more_than_0_left_days() { }
+    void should_quality_increase_by_3_for_Aged_Brie_given_less_than_5_and_more_than_0_left_days() {
+        Product product = new Product(50, 30, 5, "Aged Brie");
+
+        int quality = product.getCurrentQuality(46);
+
+        assertEquals(43, quality);
+    }
 
     @Test
     void should_quality_decrease_to_0_for_Aged_Brie_out_of_sellIn() {
@@ -97,7 +103,13 @@ public class ProductTest {
     }
 
     @Test
-    void should_quality_increase_by_2_for_BackStage_Pass_given_less_than_5_and_more_than_0_left_days() { }
+    void should_quality_increase_by_2_for_BackStage_Pass_given_less_than_5_and_more_than_0_left_days() {
+        Product product = new Product(50, 30, 5, "BackStage Pass");
+
+        int quality = product.getCurrentQuality(46);
+
+        assertEquals(43, quality);
+    }
 
     @Test
     void should_quality_decrease_to_0_for_BackStage_Pass_out_of_sellIn() {
