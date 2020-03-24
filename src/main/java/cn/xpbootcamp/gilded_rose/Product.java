@@ -20,6 +20,7 @@ public class Product {
         this.type = type;
     }
 
+
     public int getSellIn() {
         return sellIn;
     }

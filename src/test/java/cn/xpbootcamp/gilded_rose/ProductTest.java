@@ -1,6 +1,8 @@
 package cn.xpbootcamp.gilded_rose;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class ProductTest {
 
@@ -44,7 +46,14 @@ public class ProductTest {
     }
 
     @Test
-    void should_quality_no_change_for_Aged_Brie_given_more_than_10_remaining_days() { }
+    void should_quality_no_change_for_Aged_Brie_given_more_than_10_remaining_days() {
+        Product product = new Product(50,30,2, "Aged_Brie");
+
+        int initialQuality = product.getInitialQuality();
+        int quality = product.getCurrentQuality(11);
+
+        assertTrue(quality == initialQuality);
+    }
 
     @Test
     void should_quality_increase_by_2_for_Aged_Brie_given_less_than_10_and_more_than_5_remaining_days() { }
@@ -57,7 +66,15 @@ public class ProductTest {
 
 
     @Test
-    void should_quality_no_change_for_BackStage_Pass_given_more_than_10_remaining_days() { }
+    void should_quality_no_change_for_BackStage_Pass_given_more_than_10_remaining_days() {
+        Product product = new Product(50,30,2);
+
+        int initialQuality = product.getInitialQuality();
+        int quality = product.getCurrentQuality(11);
+
+        assertTrue(quality == initialQuality);
+    }
+    }
 
     @Test
     void should_quality_increase_by_2_for_BackStage_Pass_given_less_than_10_and_more_than_5_remaining_days() { }
@@ -69,7 +86,15 @@ public class ProductTest {
     void should_quality_decrease_to_0_for_BackStage_Pass_out_of_sellIn() { }
 
     @Test
-    void should_quality_no_change_for_other_type_within_sellIn() { }
+    void should_quality_no_change_for_other_type_within_sellIn() {
+        Product product = new Product(50,30,2,"others");
+
+        int initialQuality = product.getInitialQuality();
+        int qualityOutOfSellIn = product.getCurrentQuality(50);
+
+        assertTrue(qualityOutOfSellIn == initialQuality);
+
+    }
 
     @Test
     void should_quality_decease_by_twice_depreciation_for_other_type_out_of_sellIn() { }
