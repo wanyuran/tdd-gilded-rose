@@ -132,7 +132,13 @@ public class ProductTest {
     }
 
     @Test
-    void should_quality_decease_by_twice_depreciation_for_other_type_out_of_sellIn() { }
+    void should_quality_decease_by_twice_depreciation_for_other_type_out_of_sellIn() {
+        Product product = new Product(50, 30, 2, "others");
+
+        int quality = product.getCurrentQuality(52);
+
+        assertEquals(26, quality);
+    }
 
 
 
