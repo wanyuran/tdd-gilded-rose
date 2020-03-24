@@ -10,7 +10,16 @@ public class ProductTest {
 
         int quality = product.getCurrentQuality(30);
 
-        assertTrue(quality >=0);
+        assertTrue(quality >= 0);
+    }
+
+    @Test
+    void should_return_quality_no_more_than_50() {
+        Product product = new Product(50,30,5);
+
+        int quality = product.getCurrentQuality(10);
+
+        assertTrue(quality <= 50);
     }
 
 }
