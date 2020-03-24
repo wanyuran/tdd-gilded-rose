@@ -34,7 +34,48 @@ public class ProductTest {
 
     @Test
     void should_quality_no_change_for_Sulfuras_given_different_passed_days() {
+        Product product = new Product(50,30,2,"Sulfuras");
+
+        int qualityWithinSellIn = product.getCurrentQuality(30);
+        int qualityOutOfSellIn = product.getCurrentQuality(70);
+
+        assertTrue(qualityOutOfSellIn == qualityWithinSellIn);
 
     }
+
+    @Test
+    void should_quality_no_change_for_Aged_Brie_given_more_than_10_remaining_days() { }
+
+    @Test
+    void should_quality_increase_by_2_for_Aged_Brie_given_less_than_10_and_more_than_5_remaining_days() { }
+
+    @Test
+    void should_quality_increase_by_3_for_Aged_Brie_given_less_than_5_and_more_than_0_remaining_days() { }
+
+    @Test
+    void should_quality_decrease_to_0_for_Aged_Brie_out_of_sellIn() { }
+
+
+    @Test
+    void should_quality_no_change_for_BackStage_Pass_given_more_than_10_remaining_days() { }
+
+    @Test
+    void should_quality_increase_by_2_for_BackStage_Pass_given_less_than_10_and_more_than_5_remaining_days() { }
+
+    @Test
+    void should_quality_increase_by_2_for_BackStage_Pass_given_less_than_5_and_more_than_0_remaining_days() { }
+
+    @Test
+    void should_quality_decrease_to_0_for_BackStage_Pass_out_of_sellIn() { }
+
+    @Test
+    void should_quality_no_change_for_other_type_within_sellIn() { }
+
+    @Test
+    void should_quality_decease_by_twice_depreciation_for_other_type_out_of_sellIn() { }
+
+
+
+
 
 }
